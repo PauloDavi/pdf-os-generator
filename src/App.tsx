@@ -3,7 +3,10 @@ import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
 import OsBoleto from './osPdf'
 import InputMask from 'react-input-mask';
 import { TextField, Button, Select, MenuItem } from '@material-ui/core'
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline'
 import CurrencyTextField from '@unicef/material-ui-currency-textfield'
+import './app.css'
+import img from './logo2.png'
 
 function App() {
   const [address, setAddress] = useState('')
@@ -49,9 +52,9 @@ function App() {
   };
 
   return (
-    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', height: '95vh', padding: 10}}>
-      <form style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', width: 1000}}>
-        <img style={{margin: 'auto'}} src="/logo2.png" width={300} alt="logo"/>
+  <div className="divPrincipal">
+      <form className="tamanhoMenor" style={{margin: '50px auto 20px auto', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+        <img style={{margin: 'auto'}} src={img} width={300} alt="logo"/>
       <h1 style={{ textAlign: 'center' }}>ORDEM DE COMPRA/ PROPOSTA</h1>
       <Select
         style={{width: '100%', marginBottom: 10}}
@@ -65,8 +68,8 @@ function App() {
         <MenuItem value="fisica">Pessoa Física</MenuItem>
         <MenuItem value="juridica">Pessoa Jurídica</MenuItem>
       </Select>
-          <div style={{display: 'flex', flexDirection: 'row'}}>
-          <div style={{display: 'flex', flexDirection: 'column', width: 500}}>
+          <div className="memor2" style={{display: 'flex'}}>
+          <div className="inputmemor1" style={{display: 'flex', flexDirection: 'column'}}>
           <InputMask mask="99/9999" type="number" onChange={e => setProposta(e.currentTarget.value)}>
             {() => <TextField label="Nº da Proposta" variant="outlined"/>}
           </InputMask>
@@ -85,14 +88,14 @@ function App() {
             {() => <TextField style={{marginTop: 10}} label="CNPJ" variant="outlined"/>}
           </InputMask>}
 
-          {state === "juridica" && <TextField style={{marginTop: 10}} label="Inscrição Estadual" onChange={e => setInscEstad(e.currentTarget.value)} variant="outlined"/>}
+          {state === "juridica" && <TextField style={{marginTop: 10}} label="Inscrição Estadual" value={inscEstad} onChange={e => setInscEstad(e.currentTarget.value)} variant="outlined"/>}
 
-          {state === "juridica" && <TextField style={{marginTop: 10}} label="Inscrição Municipal" onChange={e => setInscMun(e.currentTarget.value)} variant="outlined"/>}
+          {state === "juridica" && <TextField style={{marginTop: 10}} label="Inscrição Municipal" value={inscMun} onChange={e => setInscMun(e.currentTarget.value)} variant="outlined"/>}
           
           <TextField label="Endereço" style={{marginTop: 10}}  onChange={(e) => setAddress(e.currentTarget.value)} variant="outlined"/>
         </div>
 
-        <div  style={{display: 'flex', flexDirection: 'column', marginLeft: 10, width: 500}}>
+        <div className="inputmemor2" style={{display: 'flex', flexDirection: 'column'}}>
 
           <TextField label="Bairro" onChange={(e) => setBairro(e.currentTarget.value)} variant="outlined"/>
 
@@ -121,6 +124,8 @@ function App() {
             rows={4}
             onChange={e => setObs(e.currentTarget.value)}
           />
+
+          <hr color="#222222" style={{width: '100%', marginTop: 25, marginBottom: 15  }}/>
 
           <div>
             {itensList.map((x, i) => {
@@ -159,36 +164,23 @@ function App() {
                     onChange={(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, value: string) => handleInputChange(e, i)}
                   />
                   <div style={{marginLeft: 'auto'}}>
-                    {itensList.length !== 1 && <Button
-                      variant="contained" style={{height: '100%', marginRight: 4, marginTop: 10}} onClick={() => handleRemoveClick(i)}>Remover</Button>}
-                    {itensList.length - 1 === i && <Button variant="contained" style={{height: '100%', marginTop: 10}} onClick={handleAddClick}>Adicionar</Button>}
+                    <Button
+                      variant="contained" style={{height: 64, marginLeft: 10, marginTop: 10, width: 48, borderRadius: '50%' }} onClick={() => handleRemoveClick(i)}>
+                        <DeleteOutlineIcon />
+                      </Button>
                   </div>
                 </div>
               );
             })}
+
+            <Button variant="contained" style={{height: 56, width: '100%', marginTop: 10}} onClick={handleAddClick}>Adicionar Item</Button>
           </div>
-          <PDFDownloadLink style={{textDecoration: 'none', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid #000000', borderRadius: 2, marginTop: 10, height: 52, backgroundColor: '#525252'}} document={<OsBoleto
-            address={address}
-            itensList={itensList}
-            obs={obs}
-            cpf={cpf}
-            cnpj={cnpj}
-            cep={cep}
-            date={date}
-            name={name}
-            inscEstad={inscEstad}
-            inscMun={inscMun}
-            bairro={bairro}
-            city={city}
-            proposta={proposta}
-            phone={phone}
-            represent={represent}
-            email={email}
-          />} fileName="boleto.pdf">
-            {({ blob, url, loading, error }) => (loading ? 'Fazendo Download...' : 'Baixar PDF')}
-          </PDFDownloadLink>
+
       </form>
-      <PDFViewer children={<OsBoleto
+      <div className="pdfContent">
+      <h2 className="labelPdf">Pre-visualização</h2>
+
+      <PDFViewer className="pdfView tamanhoMenor3" children={<OsBoleto
         itensList={itensList}
         obs={obs}
         address={address}
@@ -205,7 +197,30 @@ function App() {
         phone={phone}
         represent={represent}
         email={email}
-      />} style={{height: '100%', margin: 0, padding: 0}} width={650}/>
+      />}/>
+      <Button className="button" variant="contained" style={{width: '100%', marginTop: 10, height: 52, padding: 0}}>
+          <PDFDownloadLink style={{width: '100%', height: '100%', textDecoration: 'none', color: '#222222', display: 'flex', alignItems: 'center', justifyContent: 'center'}} document={<OsBoleto
+            address={address}
+            itensList={itensList}
+            obs={obs}
+            cpf={cpf}
+            cnpj={cnpj}
+            cep={cep}
+            date={date}
+            name={name}
+            inscEstad={inscEstad}
+            inscMun={inscMun}
+            bairro={bairro}
+            city={city}
+            proposta={proposta}
+            phone={phone}
+            represent={represent}
+            email={email}
+          />} fileName={`boleto-${proposta.replace('/', '-')}.pdf`}>
+            {({ blob, url, loading, error }) => (loading ? 'Fazendo Download...' : 'Baixar PDF')}
+          </PDFDownloadLink>
+          </Button>
+      </div>
     </div>
   );
 }
