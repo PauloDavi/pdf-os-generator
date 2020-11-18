@@ -70,48 +70,48 @@ function App() {
       </Select>
           <div className="memor2" style={{display: 'flex'}}>
           <div className="inputmemor1" style={{display: 'flex', flexDirection: 'column'}}>
-          <InputMask mask="99/9999" type="number" onChange={e => setProposta(e.currentTarget.value)}>
+          <InputMask mask="99/9999" type="number" onBlur={e => setProposta(e.currentTarget.value)}>
             {() => <TextField label="Nº da Proposta" variant="outlined"/>}
           </InputMask>
   
-          <TextField style={{marginTop: 10}} label="Razão Social/ Pessoa Física" variant="outlined" onChange={e => setName(e.currentTarget.value)}/>
+          <TextField style={{marginTop: 10}} label="Razão Social/ Pessoa Física" variant="outlined" onBlur={e => setName(e.currentTarget.value)}/>
 
-          {state === "fisica" && <InputMask mask="99/99/9999" type="data" onChange={e => setDate(e.currentTarget.value)}>
+          {state === "fisica" && <InputMask mask="99/99/9999" type="data" onBlur={e => setDate(e.currentTarget.value)}>
             {() => <TextField style={{marginTop: 10}} label="Data de Nascimento" variant="outlined"/>}
           </InputMask>}
 
-          {state === "fisica" && <InputMask mask="999.999.999-99" type="number" onChange={e => setCpf(e.currentTarget.value)}>
+          {state === "fisica" && <InputMask mask="999.999.999-99" type="number" onBlur={e => setCpf(e.currentTarget.value)}>
             {() => <TextField style={{marginTop: 10}} label="CPF" variant="outlined"/>}
           </InputMask>}
 
-          {state === "juridica" && <InputMask mask="999.999.999-99" type="number" onChange={e => setCnpj(e.currentTarget.value)}>
+          {state === "juridica" && <InputMask mask="999.999.999-99" type="number" onBlur={e => setCnpj(e.currentTarget.value)}>
             {() => <TextField style={{marginTop: 10}} label="CNPJ" variant="outlined"/>}
           </InputMask>}
 
-          {state === "juridica" && <TextField style={{marginTop: 10}} label="Inscrição Estadual" value={inscEstad} onChange={e => setInscEstad(e.currentTarget.value)} variant="outlined"/>}
+          {state === "juridica" && <TextField style={{marginTop: 10}} label="Inscrição Estadual" value={inscEstad} onBlur={e => setInscEstad(e.currentTarget.value)} variant="outlined"/>}
 
-          {state === "juridica" && <TextField style={{marginTop: 10}} label="Inscrição Municipal" value={inscMun} onChange={e => setInscMun(e.currentTarget.value)} variant="outlined"/>}
+          {state === "juridica" && <TextField style={{marginTop: 10}} label="Inscrição Municipal" value={inscMun} onBlur={e => setInscMun(e.currentTarget.value)} variant="outlined"/>}
           
-          <TextField label="Endereço" style={{marginTop: 10}}  onChange={(e) => setAddress(e.currentTarget.value)} variant="outlined"/>
+          <TextField label="Endereço" style={{marginTop: 10}}  onBlur={(e) => setAddress(e.currentTarget.value)} variant="outlined"/>
         </div>
 
         <div className="inputmemor2" style={{display: 'flex', flexDirection: 'column'}}>
 
-          <TextField label="Bairro" onChange={(e) => setBairro(e.currentTarget.value)} variant="outlined"/>
+          <TextField label="Bairro" onBlur={(e) => setBairro(e.currentTarget.value)} variant="outlined"/>
 
-          <TextField style={{marginTop: 10}} label="Cidade" onChange={(e) => setCity(e.currentTarget.value)} variant="outlined"/>
+          <TextField style={{marginTop: 10}} label="Cidade" onBlur={(e) => setCity(e.currentTarget.value)} variant="outlined"/>
 
-          <InputMask mask="99999-999" type="number" onChange={e => setCep(e.currentTarget.value)}>
+          <InputMask mask="99999-999" type="number" onBlur={e => setCep(e.currentTarget.value)}>
             {() => <TextField style={{marginTop: 10}} label="CEP" variant="outlined"/>}
           </InputMask>
 
-          {state === "juridica" && <TextField style={{marginTop: 10}} label="Representante Legal" onChange={(e) => setRepresent(e.currentTarget.value)} variant="outlined"/>}
+          {state === "juridica" && <TextField style={{marginTop: 10}} label="Representante Legal" onBlur={(e) => setRepresent(e.currentTarget.value)} variant="outlined"/>}
 
-          <InputMask mask="(99) 99999-9999" type="tel" onChange={e => setPhone(e.currentTarget.value)}>
+          <InputMask mask="(99) 99999-9999" type="tel" onBlur={e => setPhone(e.currentTarget.value)}>
             {() => <TextField style={{marginTop: 10}} label="Telefone" variant="outlined"/>}
           </InputMask>
 
-          <TextField style={{marginTop: 10}} label="E-mail" onChange={e => setEmail(e.currentTarget.value)} type="email" variant="outlined"/>
+          <TextField style={{marginTop: 10}} label="E-mail" onBlur={e => setEmail(e.currentTarget.value)} type="email" variant="outlined"/>
           </div>
           </div>
 
@@ -122,7 +122,7 @@ function App() {
             multiline
             variant="outlined"
             rows={4}
-            onChange={e => setObs(e.currentTarget.value)}
+            onBlur={e => setObs(e.currentTarget.value)}
           />
 
           <hr color="#222222" style={{width: '100%', marginTop: 25, marginBottom: 15  }}/>
@@ -137,16 +137,14 @@ function App() {
                     variant="outlined"
                     name="quant"
                     type="number"
-                    value={x.quant}
-                    onChange={e => handleInputChange(e, i)}
+                    onBlur={e => handleInputChange(e, i)}
                   />
                   <TextField 
                     style={{marginTop: 10, width: '55%', marginLeft: 10}} 
                     label="Descrição"
                     name="description"
                     variant="outlined"
-                    value={x.description}
-                    onChange={e => handleInputChange(e, i)}
+                    onBlur={e => handleInputChange(e, i)}
                   />
                   <CurrencyTextField
                     style={{marginTop: 10, width: 120, marginLeft: 10}} 
@@ -161,7 +159,7 @@ function App() {
                     decimalPlaces={2}
                     currencySymbol="R$ "
                     outputFormat="string"
-                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, value: string) => handleInputChange(e, i)}
+                    onBlur={(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, value: string) => handleInputChange(e, i)}
                   />
                   <div style={{marginLeft: 'auto'}}>
                     <Button
