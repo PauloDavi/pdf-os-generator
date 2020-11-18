@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/pdf-os-generator/static/css/main.5e035edb.chunk.css",
-    "main.js": "/pdf-os-generator/static/js/main.10ba185d.chunk.js",
-    "main.js.map": "/pdf-os-generator/static/js/main.10ba185d.chunk.js.map",
+    "main.js": "/pdf-os-generator/static/js/main.32acc3f3.chunk.js",
+    "main.js.map": "/pdf-os-generator/static/js/main.32acc3f3.chunk.js.map",
     "runtime-main.js": "/pdf-os-generator/static/js/runtime-main.ae21956d.js",
     "runtime-main.js.map": "/pdf-os-generator/static/js/runtime-main.ae21956d.js.map",
     "static/js/2.872d3ceb.chunk.js": "/pdf-os-generator/static/js/2.872d3ceb.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.ae21956d.js",
     "static/js/2.872d3ceb.chunk.js",
     "static/css/main.5e035edb.chunk.css",
-    "static/js/main.10ba185d.chunk.js"
+    "static/js/main.32acc3f3.chunk.js"
   ]
 }
