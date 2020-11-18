@@ -1,17 +1,18 @@
 {
   "files": {
-    "main.js": "/pdf-os-generator/static/js/main.a28a9223.chunk.js",
-    "main.js.map": "/pdf-os-generator/static/js/main.a28a9223.chunk.js.map",
+    "main.js": "/pdf-os-generator/static/js/main.933b8e46.chunk.js",
+    "main.js.map": "/pdf-os-generator/static/js/main.933b8e46.chunk.js.map",
     "runtime-main.js": "/pdf-os-generator/static/js/runtime-main.ae21956d.js",
     "runtime-main.js.map": "/pdf-os-generator/static/js/runtime-main.ae21956d.js.map",
     "static/js/2.61cbf2e4.chunk.js": "/pdf-os-generator/static/js/2.61cbf2e4.chunk.js",
     "static/js/2.61cbf2e4.chunk.js.map": "/pdf-os-generator/static/js/2.61cbf2e4.chunk.js.map",
     "index.html": "/pdf-os-generator/index.html",
-    "static/js/2.61cbf2e4.chunk.js.LICENSE.txt": "/pdf-os-generator/static/js/2.61cbf2e4.chunk.js.LICENSE.txt"
+    "static/js/2.61cbf2e4.chunk.js.LICENSE.txt": "/pdf-os-generator/static/js/2.61cbf2e4.chunk.js.LICENSE.txt",
+    "static/media/logo2.6fb704bc.png": "/pdf-os-generator/static/media/logo2.6fb704bc.png"
   },
   "entrypoints": [
     "static/js/runtime-main.ae21956d.js",
     "static/js/2.61cbf2e4.chunk.js",
-    "static/js/main.a28a9223.chunk.js"
+    "static/js/main.933b8e46.chunk.js"
   ]
 }
