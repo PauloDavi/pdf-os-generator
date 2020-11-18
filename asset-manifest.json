@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/PauloDavi/pdf-os-generator/static/js/main.a28a9223.chunk.js",
+    "main.js.map": "/PauloDavi/pdf-os-generator/static/js/main.a28a9223.chunk.js.map",
+    "runtime-main.js": "/PauloDavi/pdf-os-generator/static/js/runtime-main.b68ee5f5.js",
+    "runtime-main.js.map": "/PauloDavi/pdf-os-generator/static/js/runtime-main.b68ee5f5.js.map",
+    "static/js/2.b789e428.chunk.js": "/PauloDavi/pdf-os-generator/static/js/2.b789e428.chunk.js",
+    "static/js/2.b789e428.chunk.js.map": "/PauloDavi/pdf-os-generator/static/js/2.b789e428.chunk.js.map",
+    "index.html": "/PauloDavi/pdf-os-generator/index.html",
+    "static/js/2.b789e428.chunk.js.LICENSE.txt": "/PauloDavi/pdf-os-generator/static/js/2.b789e428.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b68ee5f5.js",
+    "static/js/2.b789e428.chunk.js",
+    "static/js/main.a28a9223.chunk.js"
+  ]
+}
