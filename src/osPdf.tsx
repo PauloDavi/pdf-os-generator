@@ -2,6 +2,29 @@ import React from 'react'
 import { Text, View, Document, Page, StyleSheet } from '@react-pdf/renderer';
 import { format } from 'date-fns';
 
+interface PdfProps {
+  address: string;
+  cpf: string;
+  cnpj: string;
+  cep: string;
+  date: string;
+  name: string;
+  inscEstad: string;
+  inscMun: string;
+  bairro: string;
+  city: string;
+  phone: string;
+  represent: string;
+  email: string;
+  obs: string;
+  proposta: string;
+  itensList: { 
+    quant: number;
+    description: string; 
+    value: string;
+  }[];
+}
+
 const BORDER_COLOR = '#bfbfbf'
 const BORDER_STYLE = 'solid'
 
@@ -66,35 +89,35 @@ const styles = StyleSheet.create({
   },
 });
 
-const items = [
-  {
-    quant: 1,
-    description: '132 cm^2 Corte CNC PCB',
-    value: 20,
-  },
-  {
-    quant: 2,
-    description: 'Setup Corte CNC PCB',
-    value: 20,
-  },
-  {
-    quant: 4,
-    description: 'Impressão 3D',
-    value: 30,
-  },
-]
+const OsBoleto: React.FC<PdfProps> = ({
+  address,
+  cpf,
+  cnpj,
+  cep,
+  date,
+  name,
+  inscEstad,
+  inscMun,
+  bairro,
+  city,
+  proposta,
+  phone,
+  represent,
+  itensList,
+  obs,
+  email,
+}) => {
+  function formatReal(real: string): string {
+    return `R$ ${real}`
+  }
 
-function formatReal(real: number): string {
-  return `R$ ${real.toFixed(2).toString().replace('.', ',')}`
-}
-
-function getTotal(): string {
-  let total = 0
-  items.forEach(i => total += i.quant * i.value)
-  return formatReal(total)
-}
-
-const OsBoleto = ({address}: {address: string}) => (
+  function getTotal(): string {
+    let total = 0
+    itensList.forEach(i => total += i.quant * Number(i.value.replace(',', '.')))
+    return formatReal(total.toFixed(2).toString().replace('.', ','))
+  }
+  
+  return (
   <Document>
     <Page style={styles.body}>
       <Text style={styles.title}>ORDEM DE COMPRA/ PROPOSTA</Text>
@@ -104,7 +127,7 @@ const OsBoleto = ({address}: {address: string}) => (
             <Text style={styles.tableCellHeader}>Nº da Proposta</Text> 
           </View> 
           <View style={[styles.tableCol, { width: '70%' }]}> 
-            <Text style={styles.tableCellHeader}>22/2020</Text> 
+            <Text style={styles.tableCellHeader}>{proposta}</Text> 
           </View> 
         </View>       
       </View>
@@ -116,31 +139,31 @@ const OsBoleto = ({address}: {address: string}) => (
             </View> 
           </View> 
           <View style={[styles.tableCol, { width: '80%' }]}> 
-            <Text style={styles.text}>Razão Social/ Pessoa Física: Fernanda Maria Lima Fernandes – Pessoa Física</Text>
+            <Text style={styles.text}>{`Razão Social/ Pessoa Física: ${name}`}</Text>
 
-            <Text style={styles.text}>Data de Nascimento: 30/07/2001  </Text>               
+            <Text style={styles.text}>{`Data de Nascimento: ${date}`}</Text>               
 
-            <Text style={styles.text}>CNPJ:</Text>           
+            <Text style={styles.text}>{`CNPJ: ${cnpj}`}</Text>           
 
-            <Text style={styles.text}>Inscrição Estadual: isento</Text>
+            <Text style={styles.text}>{`Inscrição Estadual: ${inscEstad}`}</Text>
 
-            <Text style={styles.text}>Inscrição Municipal: isento</Text>
+            <Text style={styles.text}>{`Inscrição Municipal: ${inscMun}`}</Text>
 
             <Text style={styles.text}>{`Endereço: ${address}`}</Text>
 
-            <Text style={styles.text}>Bairro: Jardim Cidade Universitária</Text>
+            <Text style={styles.text}>{`Bairro: ${bairro}`}</Text>
 
-            <Text style={styles.text}>Cidade: João Pessoa</Text>
+            <Text style={styles.text}>{`Cidade: ${city}`}</Text>
 
-            <Text style={styles.text}>CEP: 58052-290</Text>
+            <Text style={styles.text}>{`CEP: ${cep}`}</Text>
 
-            <Text style={styles.text}>Representante Legal:</Text>
+            <Text style={styles.text}>{`Representante Legal: ${represent}`}</Text>
 
-            <Text style={styles.text}>CPF: 099256014-44</Text>
+            <Text style={styles.text}>{`CPF: ${cpf}`}</Text>
 
-            <Text style={styles.text}>Telefone: (83) 993003902</Text>
+            <Text style={styles.text}>{`Telefone: ${phone}`}</Text>
 
-            <Text style={styles.text}>E-mail: Fernanda.fernandes@cear.ufpb.br</Text>
+            <Text style={styles.text}>{`E-mail: ${email}`}</Text>
           </View> 
         </View>       
       </View>
@@ -168,13 +191,13 @@ const OsBoleto = ({address}: {address: string}) => (
         </View>       
         <View style={styles.tableRow}>
           <View style={[styles.tableCol, { width: '18%' }]}> 
-            {items.map(i => <Text key={i.description} style={styles.text}>{i.quant}</Text>)}
+            {itensList.map(i => <Text key={i.description} style={styles.text}>{i.quant}</Text>)}
           </View> 
           <View style={[styles.tableCol, { width: '46%' }]}> 
-            {items.map(i => <Text key={i.description} style={styles.text}>{i.description}</Text>)}
+            {itensList.map(i => <Text key={i.description} style={styles.text}>{i.description}</Text>)}
           </View> 
           <View style={[styles.tableCol, { width: '20%' }]}> 
-            {items.map(i => <Text key={i.description} style={styles.text}>{formatReal(i.value)}</Text>)}
+            {itensList.map(i => <Text key={i.description} style={styles.text}>{formatReal(i.value)}</Text>)}
           </View> 
           <View style={[styles.tableCol, { width: '16%' }]}>
             <Text style={styles.text}>{getTotal()}</Text>
@@ -182,8 +205,7 @@ const OsBoleto = ({address}: {address: string}) => (
         </View>       
         <View style={styles.tableRow}>
           <View style={[styles.tableCol, { width: '100%' }]}> 
-            <Text style={styles.text}>Observações:</Text>
-            <Text style={styles.text}>Nada a observar</Text>
+            <Text style={styles.text}>{`Observações: ${obs}`}</Text>
           </View> 
         </View>       
         <View style={styles.tableRow}>
@@ -252,6 +274,6 @@ const OsBoleto = ({address}: {address: string}) => (
       )} fixed />
     </Page>
   </Document>
-);
+)};
 
 export default OsBoleto
