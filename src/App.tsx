@@ -84,7 +84,7 @@ function App() {
             {() => <TextField style={{marginTop: 10}} label="CPF" variant="outlined"/>}
           </InputMask>}
 
-          {state === "juridica" && <InputMask mask="999.999.999-99" type="number" onBlur={e => setCnpj(e.currentTarget.value)}>
+          {state === "juridica" && <InputMask mask="99.999.999/9999-99" type="number" onBlur={e => setCnpj(e.currentTarget.value)}>
             {() => <TextField style={{marginTop: 10}} label="CNPJ" variant="outlined"/>}
           </InputMask>}
 
