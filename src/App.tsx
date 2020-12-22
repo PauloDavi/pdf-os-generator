@@ -32,7 +32,7 @@ function App() {
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, index: number) => {
     let { name, value } = e.target as { value: any, name: 'quant' | 'description' | 'value' };
     if(name === 'quant') {
-      value = value > 0 ? value : 1
+      value = Number(value) > 0 ? value : 1
     }
     const list = [...itensList];
     list[index][name] = value as never;
@@ -135,6 +135,7 @@ function App() {
                     style={{marginTop: 10, width: 80}} 
                     label="Quant."
                     variant="outlined"
+                    InputProps={{ inputProps: { min: 0 } }}
                     name="quant"
                     type="number"
                     onBlur={e => handleInputChange(e, i)}
