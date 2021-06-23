@@ -215,7 +215,7 @@ function App() {
             phone={phone}
             represent={represent}
             email={email}
-          />} fileName={`boleto-${proposta.replace('/', '-')}.pdf`}>
+          />} fileName={`Proposta - ${proposta.replace('/', '-')}.pdf`}>
             {({ blob, url, loading, error }) => (loading ? 'Fazendo Download...' : 'Baixar PDF')}
           </PDFDownloadLink>
           </Button>
